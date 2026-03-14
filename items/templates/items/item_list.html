@@ -1,0 +1,50 @@
+{% extends 'items/base.html' %}
+
+{% block title %}All Items{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Items <span class="badge bg-secondary">{{ items.count }}</span></h2>
+    <a href="{% url 'item_create' %}" class="btn btn-primary">+ Add New Item</a>
+</div>
+
+{% if items %}
+<div class="table-responsive">
+    <table class="table table-hover table-bordered bg-white shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Created</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{ item.pk }}</td>
+                <td><a href="{% url 'item_detail' item.pk %}">{{ item.name }}</a></td>
+                <td>{{ item.description|truncatechars:60 }}</td>
+                <td>${{ item.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.created_at|date:"M d, Y" }}</td>
+                <td class="text-center">
+                    <a href="{% url 'item_detail' item.pk %}" class="btn btn-sm btn-info text-white">View</a>
+                    <a href="{% url 'item_update' item.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'item_delete' item.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="text-center py-5">
+    <h5 class="text-muted">No items found.</h5>
+    <a href="{% url 'item_create' %}" class="btn btn-primary mt-3">Add your first item</a>
+</div>
+{% endif %}
+{% endblock %}
