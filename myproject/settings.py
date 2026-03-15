@@ -1,11 +1,16 @@
 import os
 from pathlib import Path
 
+# Base directory of the project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Security — change this in production and keep it secret
 SECRET_KEY = 'django-insecure-change-me-in-production-xyz123'
+
+# Disable debug mode in production
 DEBUG = True
 
+# Allow all hosts — restrict this in production to your domain
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
@@ -48,6 +53,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
+# Database configuration
+# DB_USER and DB_PASSWORD are injected at runtime via GCP Secret Manager (Cloud Build)
+# DB_HOST uses the Cloud SQL Unix socket path for Cloud Run connectivity
+# DB_NAME defaults to 'cruddb' — no need to set it in cloudbuild.yaml
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -74,6 +83,7 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# Static files served from /static/, collected into staticfiles/ directory
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
