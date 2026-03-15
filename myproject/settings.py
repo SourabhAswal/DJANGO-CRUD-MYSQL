@@ -54,7 +54,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'cruddb'),
         'USER': os.environ.get('DB_USER', 'root'),
         'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'HOST': os.environ.get('DB_HOST', 'host.docker.internal'),
+        'HOST': os.environ.get('DB_HOST', '/cloudsql/realcoderzdemo:us-central1:demo'),
         'PORT': os.environ.get('DB_PORT', '3306'),
         'OPTIONS': {
             'charset': 'utf8mb4',
