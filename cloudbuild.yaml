@@ -4,7 +4,6 @@ substitutions:
   _SERVICE_NAME: 'django-crud-mysql'
   _IMAGE_NAME: 'django-crud-mysql'
   _PORT: '8000'
-  _DB_NAME: 'cruddb'
   _CLOUDSQL_INSTANCE: 'realcoderzdemo:us-central1:demo'
 
 steps:
@@ -51,7 +50,7 @@ steps:
       - 'DB_USER=demo-db-user:latest,DB_PASSWORD=demo-db-password:latest'
       # Non-secret env vars as plain substitutions
       - '--set-env-vars'
-      - 'DB_NAME=${_DB_NAME},DB_HOST=/cloudsql/${_CLOUDSQL_INSTANCE},DB_PORT=3306'
+      - 'DB_HOST=/cloudsql/${_CLOUDSQL_INSTANCE},DB_PORT=3306'
 
 images:
   - 'gcr.io/${_PROJECT_ID}/${_IMAGE_NAME}:${COMMIT_SHA}'
