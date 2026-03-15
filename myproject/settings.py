@@ -13,6 +13,9 @@ DEBUG = True
 # Allow all hosts — restrict this in production to your domain
 ALLOWED_HOSTS = ['*']
 
+# Required for CSRF to work on Cloud Run — add your Cloud Run URL here
+CSRF_TRUSTED_ORIGINS = ['https://django-crud-mysql-1023393735816.us-central1.run.app']
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
