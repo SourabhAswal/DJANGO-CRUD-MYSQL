@@ -10,8 +10,8 @@ SECRET_KEY = 'django-insecure-change-me-in-production-xyz123'
 # Disable debug mode in production
 DEBUG = True
 
-# Allow all hosts — restrict this in production to your domain
-ALLOWED_HOSTS = ['*']
+# Only allow requests from the Cloud Run domain
+ALLOWED_HOSTS = ['django-crud-mysql-1023393735816.us-central1.run.app']
 
 # Required for CSRF to work on Cloud Run — add your Cloud Run URL here
 CSRF_TRUSTED_ORIGINS = ['https://django-crud-mysql-1023393735816.us-central1.run.app']
