@@ -1,3 +1,4 @@
+# Multi-stage build to keep final image lean and secure
 # Stage 1: Builder — install deps and compile
 FROM python:3.11-slim AS builder
 
